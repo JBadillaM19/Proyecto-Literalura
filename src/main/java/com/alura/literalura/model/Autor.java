@@ -3,6 +3,7 @@ package com.alura.literalura.model;
 import jakarta.persistence.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "autores")
@@ -63,5 +64,19 @@ public class Autor {
 
     public void setFechaDeFallecimiento(Integer fechaDeFallecimiento) {
         this.fechaDeFallecimiento = fechaDeFallecimiento;
+    }
+
+    @Override
+    public String toString() {
+        String titulosLibros = libros.stream()
+                .map(Libro::getTitulo)
+                .collect(Collectors.joining(", "));
+
+        return "\n----- AUTOR -----" +
+                "\nNombre: " + nombre +
+                "\nFecha de nacimiento: " + (fechaDeNacimiento != null ? fechaDeNacimiento : "Desconocida") +
+                "\nFecha de fallecimiento: " + (fechaDeFallecimiento != null ? fechaDeFallecimiento : "Desconocida") +
+                "\nLibros registrados: [ " + titulosLibros + " ]" +
+                "\n-----------------";
     }
 }

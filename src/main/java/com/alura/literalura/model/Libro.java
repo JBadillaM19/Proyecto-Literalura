@@ -68,4 +68,14 @@ public class Libro {
     public void setAutor(Autor autor) {
         this.autor = autor;
     }
+
+    @Override
+    public String toString() {
+        return "\n----- LIBRO -----" +
+                "\nTitulo: " + titulo +
+                "\nAutor: " + (autor != null ? autor.getNombre() : "Desconocido") +
+                "\nIdioma: " + idioma +
+                "\nNumero de descargas: " + numeroDescargas +
+                "\n-----------------";
+    }
 }
